@@ -35,3 +35,31 @@ Running 4 test(s) from tests/
 [PASS] tests::test_ownable::test_data_mock_call_get_data, gas: ~13.32
 Tests: 4 passed, 0 failed, 0 skipped, 0 ignored, 0 filtered out
 (base) ygg@MacBook-Air-2 Ownable-contract-snFoundry-main % 
+
+##deploy and interact with ownablecomponent
+(base) ygg@MacBook-Air-2 ownable-components-main % starkli declare target/dev/ownable_project_ownable_contract.contract_class.json
+Enter keystore password: 
+Not declaring class as it's already declared. Class hash:
+0x063104c93f7c749ff2e8baed06872e4cd541291fd0f7745e91566e0e3a835e1b
+(base) ygg@MacBook-Air-2 ownable-components-main % starkli deploy 0x063104c93f7c749ff2e8baed06872e4cd541291fd0f7745e91566e0e3a835e1b 0x047333dacb25b076c21280c2ef4ba76b6f8d14b88892a4cd8c9abf670afc10cf
+Enter keystore password: 
+Deploying class 0x063104c93f7c749ff2e8baed06872e4cd541291fd0f7745e91566e0e3a835e1b with salt 0x066d8545431ef068c5f46b2fc15be561a5ab372ada56595f88b008d4329d1c17...
+The contract will be deployed at address 0x05c7d913c56b61d3dba6d3669f37646b8c5ccf1c78228903ca0571b11bd1488c
+Contract deployment transaction: 0x056498f28ae8129c6fe5dad8a27cca25f8fa6a21d5ac4d97aae2b13be08fd85d
+Contract deployed:
+0x05c7d913c56b61d3dba6d3669f37646b8c5ccf1c78228903ca0571b11bd1488c
+(base) ygg@MacBook-Air-2 ownable-components-main % starkli call 0x05c7d913c56b61d3dba6d3669f37646b8c5ccf1c78228903ca0571b11bd1488c owner
+[
+    "0x047333dacb25b076c21280c2ef4ba76b6f8d14b88892a4cd8c9abf670afc10cf"
+]
+(base) ygg@MacBook-Air-2 ownable-components-main % starkli call 0x05c7d913c56b61d3dba6d3669f37646b8c5ccf1c78228903ca0571b11bd1488c get_data
+[
+    "0x0000000000000000000000000000000000000000000000000000000000000001"
+]
+(base) ygg@MacBook-Air-2 ownable-components-main % starkli invoke 0x05c7d913c56b61d3dba6d3669f37646b8c5ccf1c78228903ca0571b11bd1488c set_data 0x123456789
+Enter keystore password: 
+Invoke transaction: 0x07f08ce536be8e8d54093c7e1e3b33051f01dcc52a6a99faafdcd4481f7c0d97
+(base) ygg@MacBook-Air-2 ownable-components-main % starkli call 0x05c7d913c56b61d3dba6d3669f37646b8c5ccf1c78228903ca0571b11bd1488c get_data              
+[
+    "0x0000000000000000000000000000000000000000000000000000000123456789"
+]
